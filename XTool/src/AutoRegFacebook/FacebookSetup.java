@@ -6,7 +6,11 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 import com.google.common.base.Function;
-
+import java.lang.reflect.Array;
+import java.util.Arrays;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.remote.DesiredCapabilities;
 /**
  * Created by Administrator on 06/12/2016.
  */
@@ -17,6 +21,7 @@ public class FacebookSetup {
     public FacebookSetup() {
         linkRegFace="https://mobile.facebook.com/reg/";
         System.setProperty("webdriver.chrome.driver","D:/chromedriver.exe");
+       
         this.mWebDriver = new ChromeDriver();
     }
     public FacebookSetup(String linkRegFace) {
@@ -28,7 +33,19 @@ public class FacebookSetup {
         this.srcFileChrome=srcFileChorome;
         this.linkRegFace=linkRegFace;
         System.setProperty("webdriver.chrome.driver",this.srcFileChrome);
+     
         this.mWebDriver = new ChromeDriver();
+    }
+    
+     public FacebookSetup(String linkRegFace,String srcFileChorome,boolean incognito ) {
+        this.srcFileChrome=srcFileChorome;
+        this.linkRegFace=linkRegFace;
+        if(incognito){
+        System.setProperty("webdriver.chrome.driver",this.srcFileChrome);
+        DesiredCapabilities capabilities = DesiredCapabilities.chrome();
+        capabilities.setCapability("chrome.switches", Arrays.asList("--incognito"));    
+        this.mWebDriver = new ChromeDriver(capabilities);
+        }
     }
     public void init(){
         startLinkRegFace(linkRegFace);

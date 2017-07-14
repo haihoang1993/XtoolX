@@ -19,10 +19,15 @@ public class RegFaceNew extends FacebookSetup{
     }
 
     public RegFaceNew(String linkRegFace, String srcFileChorome) {
-        super(linkRegFace, srcFileChorome);
+    super(linkRegFace, srcFileChorome);
+    }
+
+    public RegFaceNew(String linkRegFace, String srcFileChorome, boolean incognito) {
+        super(linkRegFace, srcFileChorome, incognito);
     }
     
     public void setValueALl(){
+        intUrl();
         setInputByName("lastname", randomLastName());
         setInputByName("firstname", randomFirtName());
     }
